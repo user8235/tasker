@@ -1,0 +1,14 @@
+version: '3'
+services:
+  tasker:
+    image: tasker
+    build: .
+    ports:
+      - "7540:7540"
+    env_file:
+      - .env      
+    environment:
+      - TODO_PORT=7540
+      - TODO_DBFILE=/app/scheduler.db
+    volumes:
+      - ./scheduler.db:/app/scheduler.db
