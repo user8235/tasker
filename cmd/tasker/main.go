@@ -6,11 +6,14 @@ import (
 	"log"
 	"net/http"
 	"tasker/api"
+	"tasker/models"
 	"tasker/storage"
 	"tasker/utils"
 
 	_ "github.com/mattn/go-sqlite3" // Драйвер SQLite
 )
+
+//var DB *sql.DB
 
 func main() {
 	// Определяем порт
@@ -20,14 +23,23 @@ func main() {
 	dbFile := storage.GetDBFile()
 
 	// Проверяем, нужно ли создавать базу данных
+	if storage.FileExists(dbFile) {
+		log.Println("База данных найдена:", dbFile)
+	} else {
+		log.Println("База данных не найдена, создаём новую:", dbFile)
+	}
 	install := !storage.FileExists(dbFile)
 
 	// Открываем базу данных
+	//var err error
 	db, err := sql.Open("sqlite3", dbFile)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer db.Close()
+
+	// Инициализируем глобальную переменную базы данных
+	models.DB = db
 
 	// Если база данных не существует, создаём таблицу и индекс
 	if install {

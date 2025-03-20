@@ -1,5 +1,10 @@
 package models
 
+import "database/sql"
+
+// Используем переменную базы данных
+var DB *sql.DB
+
 // Структура для парсинга JSON-запроса
 type TaskRequest struct {
 	Date    string `json:"date"`

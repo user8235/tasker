@@ -4,9 +4,7 @@ services:
     image: tasker
     build: .
     ports:
-      - "7540:7540"
-    env_file:
-      - .env      
+      - "7540:7540"     
     environment:
       - TODO_PORT=7540
       - TODO_DBFILE=/app/scheduler.db
