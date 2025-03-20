@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"tasker/models"
+	"tasker/storage"
 	"tasker/utils"
 	"time"
 )
@@ -76,7 +77,7 @@ func AddTaskHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Ссылаемся на глобальную объявленную переменную
-	db := models.DB
+	db := storage.DB
 
 	query := `INSERT INTO scheduler (date, title, comment, repeat) VALUES (?, ?, ?, ?)`
 	res, err := db.Exec(query, taskDate.Format("20060102"), task.Title, task.Comment, task.Repeat)

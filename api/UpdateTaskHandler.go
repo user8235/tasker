@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"strings"
 	"tasker/models"
+	"tasker/storage"
 	"time"
 )
 
@@ -64,7 +65,7 @@ func UpdateTaskHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Ссылаемся на глобальную объявленную переменную
-	db := models.DB
+	db := storage.DB
 
 	// Обновляем задачу в базе данных
 	query := `UPDATE scheduler SET date = ?, title = ?, comment = ?, repeat = ? WHERE id = ?`

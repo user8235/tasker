@@ -6,7 +6,6 @@ import (
 	"log"
 	"net/http"
 	"tasker/api"
-	"tasker/models"
 	"tasker/storage"
 	"tasker/utils"
 
@@ -39,7 +38,7 @@ func main() {
 	defer db.Close()
 
 	// Инициализируем глобальную переменную базы данных
-	models.DB = db
+	storage.DB = db
 
 	// Если база данных не существует, создаём таблицу и индекс
 	if install {

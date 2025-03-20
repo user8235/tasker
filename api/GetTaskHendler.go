@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"tasker/models"
+	"tasker/storage"
 	"time"
 )
 
@@ -17,7 +18,7 @@ func TasksHandler(w http.ResponseWriter, r *http.Request) {
 	search := r.URL.Query().Get("search")
 
 	// Ссылаемся на глобальную объявленную переменную
-	db := models.DB
+	db := storage.DB
 
 	var tasks []models.Task
 

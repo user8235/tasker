@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"tasker/models"
+	"tasker/storage"
 )
 
 // Обработчик для удаления задачи
@@ -20,7 +20,7 @@ func DeleteTaskHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Ссылаемся на глобальную объявленную переменную
-	db := models.DB
+	db := storage.DB
 
 	// Удаляем задачу из базы данных
 	result, err := db.Exec("DELETE FROM scheduler WHERE id = ?", id)

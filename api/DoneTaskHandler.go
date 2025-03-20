@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"tasker/models"
+	"tasker/storage"
 	"tasker/utils"
 	"time"
 )
@@ -23,7 +24,7 @@ func DoneTaskHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Ссылаемся на глобальную объявленную переменную
-	db := models.DB
+	db := storage.DB
 
 	// Получаем задачу из базы данных
 	var task models.Task
